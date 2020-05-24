@@ -11,12 +11,26 @@ namespace ApiGraphQL.Schema
         protected override void Configure(IObjectTypeDescriptor<Query> descriptor)
         {
             base.Configure(descriptor);
-
+            //***************** Products *****************
             descriptor.Field(q => q.GetProducts(default))
-                .Type<NonNullType<ListType<NonNullType<EmployeeType>>>>();
+                .Type<NonNullType<ListType<NonNullType<ProductType>>>>();
 
             descriptor.Field(q => q.GetProduct(default, default))
-                .Argument("Id", a => a.Type<NonNullType<IdType>>());
+                .Argument("Id", a => a.Type<NonNullType<IntType>>());
+
+            //***************** Products *****************
+            descriptor.Field(q => q.GetEmployees(default))
+                .Type<NonNullType<ListType<NonNullType<EmployeeType>>>>();
+
+            descriptor.Field(q => q.GetEmployee(default, default))
+                .Argument("Id", a => a.Type<NonNullType<IntType>>());
+
+            //***************** Products *****************
+            descriptor.Field(q => q.GetSteps(default))
+                .Type<NonNullType<ListType<NonNullType<StepType>>>>();
+
+            descriptor.Field(q => q.GetStep(default, default))
+                .Argument("Id", a => a.Type<NonNullType<IntType>>());
         }
     }
 }
